@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  rabbitmq: 
+    image: rabbitmq:3.11.0-management-alpine
+    restart: always
+    container_name: rabbitmq-instance
+    hostname: rabbitmq-container
+    environment:
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password
+    ports:
+      - "9000:15672"
+      - "9001:5672"
+
+  redis:
+    image: redis:7.0.5-alpine
+    restart: always
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
